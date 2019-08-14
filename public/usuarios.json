@@ -1,0 +1,8 @@
+[
+    {"nombre":"Juan", "contraseña":"2233", "saldo":9000, "limite": 2000, "saludo":"Bienvenido", "nCuenta":"001"},
+    {"nombre":"Pedro", "contraseña":"1234", "saldo":12000, "limite": 3000, "saludo":"Bienvenido", "nCuenta":"002"},
+    {"nombre":"Elias", "contraseña":"4321", "saldo":15000, "limite": 5000, "saludo":"Bienvenido", "nCuenta":"003"},
+    {"nombre":"Maria", "contraseña":"1122", "saldo":7000, "limite": 2000, "saludo":"Bienvenida", "nCuenta":"004"},
+    {"nombre":"Laura", "contraseña":"3344", "saldo":7000, "limite": 2000, "saludo":"Bienvenida", "nCuenta":"005"},
+    {"nombre":"Emma", "contraseña":"2123", "saldo":7000, "limite": 2000, "saludo":"Bienvenida", "nCuenta":"006"}
+]

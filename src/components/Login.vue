@@ -10,6 +10,7 @@
     <div class="white-container">
       <div class="menu-container">
         <h1 class="tu-cuenta">Login</h1>
+        <input type="password" placeholder="Password" v-model="pass" v-on:keyup.enter="enter">
         <button class="links" @click="enter()">Entrar</button>
       </div>
     </div>
@@ -19,18 +20,15 @@
 <script>
 export default {
   name: 'Login',
-  data() {
-    return {
-      user: {
-        name: 'nombre usuario', 
-        pass: 'contraseña',
-      },
+  data(){ 
+    return{
+      pass: ''
     }
   },
   methods: {
     enter() {
-      this.$emit('enter', this.user)
-    }
+      this.$emit('enter', this.pass)
+    },
   }
 }
 </script>

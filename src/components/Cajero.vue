@@ -3,9 +3,10 @@
     <div class="header">
       <img class="logo" src="../assets/logo.png" />
       <div class="align-left">
-        <span id="nombre">Bienvenido/a</span>
+        <span id="nombre">{{usuario.saludo}} {{usuario.nombre}}</span>
         <img class="avatar" src="../assets/avatar.svg" />
       </div>
+
     </div>
     <div class="white-container">
       <div class="menu-container">
@@ -16,11 +17,17 @@
         <button class="links" @click="transferirDinero()">Transferir dinero</button>
         <button class="links" @click="cambiarLimiteDeExtraccion()">Cambiar límite de extracción</button>
       </div>
-      <div class="green-container">
+      <div class="container green-container">
         <div class="cuenta-info">
-          <p>Saldo en tu cuenta</p>
-          <h3 id="saldo-cuenta">$</h3>
-          <p id="limite-extraccion">Tu límite de extracción es:</p>
+          <div v-if="auth === false">
+            <p>Saldo en tu cuenta</p>
+            <h3 id="saldo-cuenta">$ {{usuario.saldo}}</h3>
+            <p id="limite-extraccion">Tu límite de extracción es: $ {{usuario.limite}}</p>
+          </div>
+          <div v-else>
+            <h1>Pagar servicios</h1>
+            <button class="btn btn-outline-light btn-lg" v-for="item in servicio">{{item}}</button>
+          </div>
         </div>
       </div>
     </div>
@@ -29,29 +36,26 @@
 
 <script>
 export default {
+  props:['usuario'],
   name: "Cajero",
   data() {
     return {
+      servicio: [],
       auth: false
     }
   },
-  mounted() {
-    this.validar()
+  mounted(){
+    this.cargarServicio()
   },
   methods: {
-    validar() {
-      let txt = prompt("Ingrese la clave:");
-      if (txt == null || txt == "") {
-        // "User cancelled the prompt."
-        this.validar()
-      } else{
-        let pass = parseInt(txt)
-        if (parseInt(pass) === 1122) {
-          this.auth = true
-        }
-      }
-    }
-  }
+    cargarServicio: async function(){
+      const data = await fetch('./servicios.json')
+      this.servicio = await data.json()
+    },
+    pagarServicio(){
+      this.auth = !this.auth
+    },    
+  }  
 };
 </script>
 
